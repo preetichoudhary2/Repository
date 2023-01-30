@@ -51,27 +51,36 @@ public class ServiceFile
 		
 	    File dir = new File(path+"//");
 	    File file=new File(path+"//" +fileName);
+	    if(!file.isDirectory()){
 	    if(exists(dir,fileName)){
 	      if (file.delete()) { 
 	    	  System.out.println("Deleted the file: " + fileName);
 	      	} else {
 	    	  System.out.println("Failed to delete the file.");
 	      	}
-	   	}else {
+	    }else {
 	   		System.out.println("File doesn't exist");
 	   	}
-	    
+	    }else{
+			System.out.println("Failed to delete,Directory is not empty.");
+			}
 		}  
+	
 	    void searchFile(){
-			
 	    	File dir = new File(path+"//");
-		 	if(exists(dir,fileName)){
+	    	File dirfile = new File(path+"//"+fileName);
+	    	if(!dirfile.isDirectory()){
+	    	if(exists(dir,fileName)){
 				  	  System.out.println("File Exist: "+fileName);
 				}else {
-					System.out.println("File doesn't exist");
+					System.out.println("File or Directory Not Found");
+				}
+	    		}else{
+					System.out.println("Directory Exist "+dirfile);
+					}
 				}
 			
-	    }
+	    
 	    
 	    public boolean exists(File dir, String filename){
 	        String[] files = dir.list();
@@ -95,5 +104,21 @@ public class ServiceFile
 	        }
 	      
 	    }
+	
+	static void bubbleSort(String str[])
+	{                                       
+	String temp;
+	for (int j = 0; j < str.length; j++) {
+   	   for (int i = j + 1; i < str.length; i++) {
+		// comparing adjacent strings
+		if (str[i].compareTo(str[j]) < 0) {
+			temp = str[j];
+			str[j] = str[i];
+			str[i] = temp;
+		}
+   	   	}
+		}
+		}
+	
 	
 }
